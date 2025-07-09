@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://i1xqlobw8ubl"]
+
+[ext_resource type="Script" uid="uid://biap6o23nd8g5" path="res://main.gd" id="1_0xm2m"]
+[ext_resource type="PackedScene" uid="uid://bxu2ganp2ytg2" path="res://player_bar.tscn" id="2_h2yge"]
+
+[node name="Main" type="Node"]
+script = ExtResource("1_0xm2m")
+
+[node name="GameBackground" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0959682, 0.235463, 0.342687, 1)
+
+[node name="PlayerBar" parent="." instance=ExtResource("2_h2yge")]
+
+[node name="PlayerStartPosition" type="Marker2D" parent="."]
+position = Vector2(240, 624)
+
+[node name="EnemyStartPosition" type="Marker2D" parent="."]
+position = Vector2(240, 24)
