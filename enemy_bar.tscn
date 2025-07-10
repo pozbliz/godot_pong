@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://530sjbv0u8p4"]
+
+[ext_resource type="Script" uid="uid://3g1g2l3eqn5h" path="res://enemy_bar.gd" id="1_14dic"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_14dic"]
+size = Vector2(100, 15)
+
+[node name="EnemyBar" type="Area2D"]
+script = ExtResource("1_14dic")
+metadata/_edit_group_ = true
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 100.0
+offset_bottom = 15.0
+color = Color(0.597076, 0.332787, 0.276774, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(50, 7.5)
+shape = SubResource("RectangleShape2D_14dic")
