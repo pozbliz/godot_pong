@@ -5,7 +5,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_14dic"]
 size = Vector2(100, 15)
 
-[node name="EnemyBar" type="Area2D"]
+[node name="EnemyBar" type="CharacterBody2D"]
 script = ExtResource("1_14dic")
 metadata/_edit_group_ = true
 

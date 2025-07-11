@@ -1,19 +1,21 @@
 extends CharacterBody2D
 
 
-@export var enemy_speed := 300.0
+@export var speed := 200.0
 @export var ball_radius := 12
 @export var ball_color := Color.WHITE
 var direction
 
 
 func _ready() -> void:
+	print(position)
 	direction = Vector2.ZERO
 	direction.y = 1 if randf() <= 0.5 else -1
 	direction.x = randf_range(-0.7, 0.7)
 
 func _physics_process(delta):
-	var velocity = direction.normalized() * enemy_speed
+	print(position)
+	var velocity = direction.normalized() * speed
 	var collision = move_and_collide(velocity * delta)
 	
 	if collision:
