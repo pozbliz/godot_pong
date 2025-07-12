@@ -11,18 +11,39 @@ func _ready() -> void:
 	$EnemyGoal.body_entered.connect(_on_enemy_goal_body_entered)
 	$MainMenu/VBoxContainer/StartGameButton.pressed.connect(_on_start_game_button_pressed)
 	$MainMenu/VBoxContainer/ExitGameButton.pressed.connect(_on_exit_game_button_pressed)
+	$MainMenu/VBoxContainer/ResetGameButton.pressed.connect(_on_reset_game_button_pressed)
+	$MainMenu/VBoxContainer/ResumeGameButton.pressed.connect(_on_resume_game_button_pressed)
+	
+	$MainMenu.process_mode = Node.PROCESS_MODE_ALWAYS
 
 	$HUD.hide()
+	
+func _input(event: InputEvent) -> void:
+	if Input.is_action_just_pressed("open_menu"):
+		toggle_pause()
+
+func toggle_pause():
+	if get_tree().paused:
+		# Resume game
+		get_tree().paused = false
+		$MainMenu.hide()
+		$HUD.show()
+	else:
+		# Pause game
+		get_tree().paused = true
+		$HUD.hide()
+		$MainMenu.show()
 
 func _process(delta: float) -> void:
 	pass
 
 func new_game():
+	$MainMenu.hide()
+	$HUD.show()
+	get_tree().paused = false
 	$HUD/HBoxContainer/PlayerScore.text = str(0)
 	$HUD/HBoxContainer/EnemyScore.text = str(0)
 	
-	var ball: CharacterBody2D = ball_scene.instantiate()
-	add_child(ball)
 	new_round()
 
 func new_round():
@@ -54,9 +75,16 @@ func _on_enemy_goal_body_entered(body: Node):
 	new_round()
 	
 func _on_start_game_button_pressed():
+	new_game()
+	
+func _on_reset_game_button_pressed():
+	get_tree().paused = false 
+	new_game()
+	
+func _on_resume_game_button_pressed():
+	get_tree().paused = false
 	$MainMenu.hide()
 	$HUD.show()
-	new_game()
 	
 func _on_exit_game_button_pressed():
 	get_tree().quit()

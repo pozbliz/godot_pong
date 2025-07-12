@@ -3,6 +3,7 @@ extends CharacterBody2D
 
 @export var speed := 250.0
 @export var speed_increase := 5.0  # in %
+@export var max_speed := 500
 @export var ball_radius := 12
 @export var ball_color := Color.WHITE
 var direction
@@ -11,6 +12,7 @@ var game_started := false
 
 func _ready() -> void:
 	direction = Vector2.ZERO
+	process_mode = Node.PROCESS_MODE_PAUSABLE
 
 func _physics_process(delta):
 	if not game_started:
@@ -24,7 +26,7 @@ func _physics_process(delta):
 		direction = direction.bounce(normal).normalized()
 		
 		var increase_factor: float = 1 + speed_increase / 100
-		speed = speed * increase_factor
+		speed = min(speed * increase_factor, max_speed)
 	
 func _draw():
 	draw_circle(Vector2.ZERO, ball_radius, ball_color)

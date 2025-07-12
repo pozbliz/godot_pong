@@ -31,6 +31,14 @@ layout_mode = 2
 theme = SubResource("Theme_rhts7")
 text = "Start Game"
 
+[node name="ResumeGameButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Resume Game"
+
+[node name="ResetGameButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Reset Game"
+
 [node name="ExitGameButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 text = "Exit Game"
