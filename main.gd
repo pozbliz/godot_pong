@@ -11,7 +11,7 @@ func _ready() -> void:
 	$EnemyGoal.body_entered.connect(_on_enemy_goal_body_entered)
 	$MainMenu/VBoxContainer/StartGameButton.pressed.connect(_on_start_game_button_pressed)
 	$MainMenu/VBoxContainer/ExitGameButton.pressed.connect(_on_exit_game_button_pressed)
-	
+
 	$HUD.hide()
 
 func _process(delta: float) -> void:
@@ -37,7 +37,6 @@ func _on_player_goal_body_entered(body: Node):
 	if scoring:
 		return
 
-	print("Player Goal hit by: ", body.name, " at position: ", body.position)
 	scoring = true
 	enemy_score += 1
 	$HUD.update_enemy_score(enemy_score)
@@ -47,8 +46,7 @@ func _on_player_goal_body_entered(body: Node):
 func _on_enemy_goal_body_entered(body: Node):
 	if scoring:
 		return
-	
-	print("Enemy Goal hit by: ", body.name, " at position: ", body.position)
+
 	scoring = true
 	player_score += 1
 	$HUD.update_player_score(player_score)

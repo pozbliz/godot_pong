@@ -1,6 +1,6 @@
 extends Node2D
 
-@export var speed := 200
+@export var speed := 250
 var screen_size
 
 func _ready() -> void:
@@ -14,7 +14,7 @@ func _process(delta: float) -> void:
 		velocity.x -= 1 * speed
 		
 	position += velocity * delta
-	position = position.clamp(Vector2.ZERO, screen_size)
+	position.x = clamp(position.x, 0, screen_size.x - $ColorRect.size.x)
 	
 func start(pos):
 	position = pos
