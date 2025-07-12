@@ -1,7 +1,6 @@
 extends Node2D
 
-@export var speed := 250
-@export var smoothing := 5.0
+const SMOOTHING := 5.0
 var screen_size
 var direction
 var ball: CharacterBody2D
@@ -15,7 +14,7 @@ func _process(delta: float) -> void:
 	var target_x = ball.position.x
 	
 	if ball.direction.y < 0:
-		position.x = lerp(position.x, target_x, smoothing * delta)
+		position.x = lerp(position.x, target_x, SMOOTHING * delta)
 		position.x = clamp(position.x, 0, screen_size.x - $ColorRect.size.x)
 	
 func start(pos):
