@@ -1,8 +1,9 @@
 extends Node2D
 
-@export var speed := 200
+@export var speed := 300
 var screen_size
 var direction
+
 
 func _ready() -> void:
 	screen_size = get_viewport_rect().size
@@ -14,7 +15,7 @@ func _process(delta: float) -> void:
 	
 	var bar_size = $ColorRect.size.x
 	var max_x = Vector2(screen_size.x - bar_size, 0)
-	position = position.clamp(Vector2.ZERO, max_x)
+	position.x = clamp(position.x, 0, screen_size.x - $ColorRect.size.x)
 	
 func choose_new_direction():
 	direction = 1 if randf() <= 0.5 else -1

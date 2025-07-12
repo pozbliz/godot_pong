@@ -4,6 +4,7 @@
 size = Vector2(10, 640)
 
 [node name="Walls" type="StaticBody2D"]
+collision_mask = 4
 
 [node name="Left" type="CollisionShape2D" parent="."]
 position = Vector2(5, 319.5)
